@@ -37,13 +37,91 @@ defaultConfig {
 
 # NDK中输出日志方法
 
+Android-NDK中C++[打印日志到LogCat](http://www.linyibin.cn/2016/01/04/JNI-LogCat/)的步骤如下：
+
+1. 在Android.mk上加上一行
+
+   ```c
+   LOCAL_LDLIBS :=  -L$(SYSROOT)/usr/lib -llog 用于在C++中调用Android的Log方法，打印日志到LogCat
+   ```
+
+2. 在Cpp实现文件中，导入头文件，并定义宏：
+
+   ```c++
+   #include <android/log.h>
+   #define LOG_TAG "JNI LOG"
+   #define LOGE(a)  __android_log_write(ANDROID_LOG_ERROR,LOG_TAG,a)
+   #define LOG(...) __android_log_print(ANDROID_LOG_ERROR,LOG_TAG, __VA_ARGS__)
+   #define LOG_LINE LOG("%d", __LINE__)
+   ```
+
+   
+
+3. 在代码中应用
+
+   ```c
+   LOGE("test");
+   LOG("%d", 0);
+   LOG_LINE;
+   ```
+
+另外一种方法，直接[引入一个log日志](https://blog.csdn.net/afei__/article/details/81429417)库的方法。
 
 
 
+# 问题定位方法
 
-- 问题定位方法
-  - adder2line
-  - ndk-slack
+[Android NDK Tombstone/Crash 分析](https://toutiao.io/posts/jflx6c/preview)；
+
+## addr2line
+
+具体使用方法查看这篇博文，写得很详细：[使用addr2line分析Crash日志](https://blog.csdn.net/Xiongjiayo/article/details/86514623)；
+
+
+
+## ndk-stack
+
+[ndk-stack调试命令使用](https://blog.csdn.net/nico0423/article/details/11537609?utm_medium=distribute.pc_feed_404.none-task-blog-BlogCommendFromMachineLearnPai2-4.nonecase&depth_1-utm_source=distribute.pc_feed_404.none-task-blog-BlogCommendFromMachineLearnPai2-4.nonecas)步骤：
+
+1. 在工程目录下的jni文件夹下Application.mk中添加 APP_OPTIM := debug，然后重新编译so库
+
+2. 在windows 下使用运行输入 cmd 进入 android-ndk 目录；或者直接在terminal命令输入框中进入ndk的根目录
+
+   ![image-20201208183730850](readme/image/image-20201208183730850.png)
+   提取信息的命令：adb logcat | ndk-stack -sym E:\ibingli\Studio\Android-ibl\ibingli_new\yuvlibrary\libs\armeabi-v7a\libyuv.so
+
+3. 运行命令 
+   adb logcat | ndk-stack -sym d:\documents\project\inferno3\android\obj\local\armeabi\libgame_logic.so
+   或者
+   adb logcat | ndk-stack -sym d:\documents\project\inferno3\android\obj\local\armeabi
+   查看所有的*.so调试信息 
+
+4. 查看文件ndk-native 调试信息
+
+
+
+在模拟器上使用ndk-stack的方法：
+
+1. 使用cmd 进入android-sdk的plafrom-tools目录
+2. 运行 emulator -partition-size 512 -avd your_avd_name
+
+
+
+# Libyuv资料
+
+[android全平台编译libyuv库实现YUV和RGB的转换](https://blog.csdn.net/byhook/article/details/84475525?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~all~first_rank_v2~rank_v28-6-84475525.nonecase&utm_term=libyuv%20rgb%E8%BD%ACi420&spm=1000.2123.3001.4430)；
+
+[libyuv—libyuv测试使用ARGBToI420和ConvertToARGB接口](https://blog.csdn.net/XIAIBIANCHENG/article/details/73065646)；
+
+[编译libyuv、迁移至Android studio的操作和遇到的问题](https://blog.csdn.net/silently_frog/article/details/98097888)；
+
+[libyuv jpg图片转换为i420，旋转270度](https://www.jianshu.com/p/0d13851a383f)；
+
+使用C的代码直接操作bitmap对象：[NDK 开发之 Bitmap 的使用](https://blog.csdn.net/afei__/article/details/81429417)；
+
+[Android音视频——Libyuv使用实战](https://linqiarui.blog.csdn.net/article/details/101062704?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4.control)；
+
+
 
 
 
