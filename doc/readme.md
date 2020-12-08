@@ -14,11 +14,30 @@ defaultConfig {
 }
 ```
 
+
+
 # SO动态库编译
+
+1. 先配置项目的NDK的路径，项目右键→open module settings→SDK Location→填入sdk的根目录
+   ![image-20201208165911526](readme/image/image-20201208165911526.png)
+2. 在terminal中输入ndk-build执行打包脚本
+   ![image-20201208170118838](readme/image/image-20201208170118838.png)
+
+
 
 # 打包aar
 
+在Gradle窗口中找到assembleRelease命令执行打包流程。
+
+![image-20201208172341090](readme/image/image-20201208172341090.png)
+
+将生成的aar包放入主项目的libs目录里面即可，这样便完成了ndk到主项目的引入。
+
+
+
 # NDK中输出日志方法
+
+
 
 
 
