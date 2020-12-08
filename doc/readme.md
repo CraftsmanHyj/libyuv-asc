@@ -123,6 +123,38 @@ Android-NDK中C++[打印日志到LogCat](http://www.linyibin.cn/2016/01/04/JNI-L
 
 
 
+## 转I420相关
+
+mjpeg本身就是一种格式,网上有mjpeg直接转i420的库，使用libyuv::MJPGToI420转，将mjpeg转i420的格式，对应的C实现代码在convert_jpeg.cc这个类里面。
+
+在使用libyuv的mjpeg转i420的时候，需要用到libjpeg的库，配置步骤如下：
+
+1. 导入libjpeg-turbo-1.5.0库进项目
+   <img src="readme/image/image-20201208191147556.png" alt="image-20201208191147556" style="zoom: 67%;" />
+
+2. 在Android.mk中加入以下配置
+
+   ```
+   LOCAL_CFLAGS += -DLIBYUV_NEON -DHAVE_JPEG
+   
+   LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../libjpeg-turbo-1.5.0
+   LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../libjpeg-turbo-1.5.0/include
+   
+   LOCAL_SHARED_LIBRARIES := libjpeg-turbo1500
+   
+   include $(PROJ_PATH)/libjpeg-turbo-1.5.0/Android.mk
+   ```
+
+   <img src="readme/image/image-20201208191706590.png" alt="image-20201208191706590" style="zoom:67%;" />
+
+3. 做好了这些配置之后，ndk就可以编译通过了。
+
+## 查看.yuv文件
+
+RawViewer.exe可以查看保存为.yuv文件的每一帧的数据效果。
+
+cn.ibingli.library.yuv.I420ToBitmapUtils类里面有保存帧图片，帧数据流的方法，在调试、测试的时候使用的工具类。
+
 
 
 # 问题集锦
