@@ -1,0 +1,4 @@
+include ':libyuv'
+include ':yuvlibrary'
+include ':app'
+rootProject.name = "libyuv-asc"
