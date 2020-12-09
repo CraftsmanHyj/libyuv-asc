@@ -47,15 +47,13 @@ Android-NDK中C++[打印日志到LogCat](http://www.linyibin.cn/2016/01/04/JNI-L
 
 2. 在Cpp实现文件中，导入头文件，并定义宏：
 
-   ```c++
+   ```c
    #include <android/log.h>
    #define LOG_TAG "JNI LOG"
    #define LOGE(a)  __android_log_write(ANDROID_LOG_ERROR,LOG_TAG,a)
    #define LOG(...) __android_log_print(ANDROID_LOG_ERROR,LOG_TAG, __VA_ARGS__)
    #define LOG_LINE LOG("%d", __LINE__)
    ```
-
-   
 
 3. 在代码中应用
 
@@ -76,6 +74,23 @@ Android-NDK中C++[打印日志到LogCat](http://www.linyibin.cn/2016/01/04/JNI-L
 ## addr2line
 
 具体使用方法查看这篇博文，写得很详细：[使用addr2line分析Crash日志](https://blog.csdn.net/Xiongjiayo/article/details/86514623)；
+
+简单的使用步骤如下：
+
+1. 先在terminal进入到addr2line工具的目录下：
+
+   路径在"{NDK}/toolchains/{ABI}/prebuilt/windows-x86_64/bin/"下
+
+   ```
+     ${NDK}     // 你的NDK解压包路径
+     ${ABI}     // 你的调试设备的CPU架构,通常来说实体机一般都是对应 arm-linux-androideabi
+   ```
+
+   cd D:\ProgamFilesGreen\Android\Sdk\ndk\21.3.6528147\toolchains\arm-linux-androideabi-4.9\prebuilt\windows-x86_64\bin
+
+2. 然后提取指令的报错行数：arm-linux-androideabi-addr2line -C -f -e arm-linux-androideabi-addr2line -C -f -e E:\ibingli\Studio\YUVDemo\libyuv-asc\yuvlibrary\obj\local\armeabi-v7a\libyuv.so   0002fb62 0210f741
+   这里SO的路径需要注意下，不是libs下面导入的路径，**而是生成SO时obj目录下的路径**，若为第三方so，则取libs的路径即可：
+   ![image-20201209145933181](readme/image/image-20201209145933181.png)
 
 
 
