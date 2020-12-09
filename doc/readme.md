@@ -112,8 +112,15 @@ Android-NDK中C++[打印日志到LogCat](http://www.linyibin.cn/2016/01/04/JNI-L
    查看所有的*.so调试信息 
 
 4. 查看文件ndk-native 调试信息
+   其中提取出来的[BuildId表示崩溃代码的版本](https://source.android.google.cn/devices/tech/debug/native-crash?hl=zh-cn#tombstones)。
 
+   ```
+   #00 0x0002fb62 /data/app/com.hyj.libyuv-62-Z5IyrZ-NFdYC0xxyc4Q==/lib/arm/libyuv.so (ABGRToUVRow_NEON+80) (BuildId: d3e714b3b840b2e9c740777882dc0b27ba6aa465)
+   #01 0x000155a1 /data/app/com.hyj.libyuv-62-Z5IyrZ-NFdYC0xxyc4Q==/lib/arm/libyuv.so (ABGRToI420+284) (BuildId: d3e714b3b840b2e9c740777882dc0b27ba6aa465)
+   #02 0x00031f43 /data/app/com.hyj.libyuv-62-Z5IyrZ-NFdYC0xxyc4Q==/lib/arm/libyuv.so (Java_cn_ibingli_library_yuv_YuvUtils_bitmap2i420WithC+242) (BuildId: d3e714b3b840b2e9c740777882dc0b27ba6aa465)
+   ```
 
+   
 
 在模拟器上使用ndk-stack的方法：
 
