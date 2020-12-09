@@ -105,6 +105,10 @@ Android-NDK中C++[打印日志到LogCat](http://www.linyibin.cn/2016/01/04/JNI-L
 1. 使用cmd 进入android-sdk的plafrom-tools目录
 2. 运行 emulator -partition-size 512 -avd your_avd_name
 
+## backtrace
+
+当发生了so里面的崩溃之后，在logcat中查找“backtrace”关键字，可以看到so相应的报错信息，再结合addr2line、ndk-stack可以定位到错误具体行数。
+
 
 
 # Libyuv资料
