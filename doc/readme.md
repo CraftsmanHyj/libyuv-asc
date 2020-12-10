@@ -63,7 +63,9 @@ Android-NDK中C++[打印日志到LogCat](http://www.linyibin.cn/2016/01/04/JNI-L
    LOG_LINE;
    ```
 
-另外一种方法，直接[引入一个log日志](https://blog.csdn.net/afei__/article/details/81429417)库的方法。
+另外一种方法，直接[引入一个log日志](https://blog.csdn.net/afei__/article/details/81429417)库的方法。[NDK 开发之 Android LOG 工具类](https://blog.csdn.net/afei__/article/details/81030373)。
+
+这个例子简单易懂：[Android中Jni学习总结--Jni中打印log信息](https://www.jianshu.com/p/68a502953643)。
 
 
 
