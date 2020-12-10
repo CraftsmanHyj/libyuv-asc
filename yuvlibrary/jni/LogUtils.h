@@ -16,11 +16,11 @@
 //[main.cpp][main][7]: num : 20
 //[main.cpp][main][8]:
 
-#ifndef _LOG_UTILS_H_
-#define _LOG_UTILS_H_
-
 #include <android/log.h>
 #include <string.h>
+
+#ifndef _LOG_UTILS_H_
+#define _LOG_UTILS_H_
 
 //如果想要关掉 log，注释掉 #define DEBUG 的定义就行
 #define DEBUG // 可以通过 CmakeLists.txt 等方式来定义在这个宏，实现动态打开和关闭LOG
