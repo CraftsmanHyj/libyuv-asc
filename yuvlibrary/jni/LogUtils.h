@@ -2,7 +2,7 @@
 //PS: include 之后双引号和尖括号的区别
 //1、 #include <jni.h>：系统自带的头文件用尖括号引用，编译器会在系统目录下查找
 //2、 #include "LogUtils.h"：用户自定义的头文件，编译器会在用户目录下优先查找，找不到在找系统目录
-//源文件：https://blog.csdn.net/afei__/article/details/81030373
+//源博文：https://blog.csdn.net/afei__/article/details/81030373
 
 //调用方法示例：
 //LOGD("hello world");
