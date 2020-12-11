@@ -35,7 +35,7 @@
 #endif
 
 #ifdef DEBUG
-#define TAG "JNI"
+#define TAG "JNI LOG"
 #define LOGV(format, ...) __android_log_print(ANDROID_LOG_VERBOSE, TAG,\
         "[%s][%s][%d]: " format, __FILENAME__, __FUNCTION__, __LINE__, ##__VA_ARGS__);
 #define LOGD(format, ...) __android_log_print(ANDROID_LOG_DEBUG, TAG,\
