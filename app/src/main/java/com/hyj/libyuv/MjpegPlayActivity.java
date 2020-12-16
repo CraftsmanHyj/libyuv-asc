@@ -10,9 +10,7 @@ import android.widget.RadioButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.hyj.libyuv.view.ETVideoView;
-
-import cn.ibingli.library.YuvConvert;
-import cn.ibingli.library.yuv.I420ToBitmapUtils;
+import com.hyj.newversion.YuvConvert;
 
 /**
  * <pre>
@@ -28,7 +26,6 @@ public class MjpegPlayActivity extends AppCompatActivity {
     private RadioButton rbBitmap;
     private ETVideoView etvSurfaceView;
 
-    private I420ToBitmapUtils i420Utils;
     private String playUrl = "http://10.10.1.1:8196/?action=stream";
 
     public static void startActivity(Context cxt) {
@@ -66,8 +63,6 @@ public class MjpegPlayActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        i420Utils = new I420ToBitmapUtils(this);
-
         rbBitmap = findViewById(R.id.rbBitmap2i420);
         etvSurfaceView = findViewById(R.id.etvSurfaceView);
         etvSurfaceView.setMjpegPlayUrl(playUrl);

@@ -1,4 +1,4 @@
-//libyuv是厂家给的源码，项目中用不到，若需要的话打开屏蔽即可
+include ':newVersion'//libyuv是厂家给的源码，项目中用不到，若需要的话打开屏蔽即可
 //include ':libyuv''
 
 include ':yuvlibrary'
