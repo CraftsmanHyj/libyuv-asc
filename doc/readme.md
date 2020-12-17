@@ -105,7 +105,7 @@ Android-NDK中C++[打印日志到LogCat](http://www.linyibin.cn/2016/01/04/JNI-L
 2. 在windows 下使用运行输入 cmd 进入 android-ndk 目录；或者直接在terminal命令输入框中进入ndk的根目录
 
    ![image-20201208183730850](readme/image/image-20201208183730850.png)
-   提取信息的命令：adb logcat | ndk-stack -sym E:\ibingli\Studio\Android-ibl\ibingli_new\yuvlibrary\libs\armeabi-v7a\libyuv.so
+   提取信息的命令：adb logcat | ndk-stack -sym E:\ibingli\Studio\Android-ibl\ibingli_new\yuvlibrary\obj\local\armeabi-v7a\libyuv.so
 
 3. 运行命令 
    adb logcat | ndk-stack -sym d:\documents\project\inferno3\android\obj\local\armeabi\libgame_logic.so

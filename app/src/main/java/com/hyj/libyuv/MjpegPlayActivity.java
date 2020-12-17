@@ -89,13 +89,15 @@ public class MjpegPlayActivity extends AppCompatActivity {
      * 数据解码发送至腾讯
      */
     private void onI420Data(Bitmap bitmap, byte[] bitmapByte, int width, int height) throws Throwable {
-        Log.v(TAG, "bitmap直接用C解码，转成i420 byte[]数据");
+//        Log.v(TAG, "bitmap直接用C解码，转成i420 byte[]数据");
 
         //将bitmap数据解码为i420的byte[]数据，然后传给腾讯
         byte[] frameByte = YuvConvert.bitmap2i420WithC(bitmap);
         if (null == frameByte) {
             return;
         }
+
+        Log.v(TAG, "bitmap直接用C解码，转成i420 byte[]数据");
 
         //将数据传给腾讯SDK
 //        baseCallPresenter.sendCustomVideoData(frameByte, width, height);

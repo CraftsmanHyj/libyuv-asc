@@ -155,6 +155,8 @@ Java_com_hyj_newversion_yuv_YuvUtils_yuvI420ToNV21(JNIEnv *env, jclass type, jby
     (*env)->ReleaseByteArrayElements(env, nv21Src_, nv21Src, 0);
 }
 
+#include "LogUtils.h"
+
 JNIEXPORT void JNICALL
 Java_com_hyj_newversion_yuv_YuvUtils_bitmap2i420WithC(JNIEnv *env, jclass type,
                                                  jbyteArray dst_argb_,
@@ -183,11 +185,17 @@ Java_com_hyj_newversion_yuv_YuvUtils_bitmap2i420WithC(JNIEnv *env, jclass type,
     void *dst_argb;
     AndroidBitmap_lockPixels(env, bitmap, &dst_argb);//锁定画布
 
-   ABGRToI420(dst_argb, src_stride_argb,
-           dst_buffer_y, dst_stride_y,
-           dst_buffer_u, dst_stride_u,
-           dst_buffer_v,dst_stride_v,
-           width, height);
+    if (NULL != dst_argb){
+        LOGD("width：%d;height：%d;dst_stride_y：%d;dst_stride_u：%d;dst_stride_v：%d;", src_width,src_height,dst_stride_y,dst_stride_u,dst_stride_v);
+
+        ABGRToI420(dst_argb, src_stride_argb,
+                        dst_buffer_y, dst_stride_y,
+                        dst_buffer_u, dst_stride_u,
+                        dst_buffer_v,dst_stride_v,
+                        width, height);
+    }else{
+        LOGD("width：Error;");
+    }
 
     AndroidBitmap_unlockPixels(env, bitmap);// 解锁画布
     (*env)->ReleaseByteArrayElements(env, dst_argb_, dst, 0);

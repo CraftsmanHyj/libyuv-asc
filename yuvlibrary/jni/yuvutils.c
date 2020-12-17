@@ -183,11 +183,13 @@ Java_cn_ibingli_library_yuv_YuvUtils_bitmap2i420WithC(JNIEnv *env, jclass type,
     void *dst_argb;
     AndroidBitmap_lockPixels(env, bitmap, &dst_argb);//锁定画布
 
-   ABGRToI420(dst_argb, src_stride_argb,
-           dst_buffer_y, dst_stride_y,
-           dst_buffer_u, dst_stride_u,
-           dst_buffer_v,dst_stride_v,
-           width, height);
+    if (NULL != dst_argb){
+        ABGRToI420(dst_argb, src_stride_argb,
+                        dst_buffer_y, dst_stride_y,
+                        dst_buffer_u, dst_stride_u,
+                        dst_buffer_v,dst_stride_v,
+                        width, height);
+    }
 
     AndroidBitmap_unlockPixels(env, bitmap);// 解锁画布
     (*env)->ReleaseByteArrayElements(env, dst_argb_, dst, 0);
